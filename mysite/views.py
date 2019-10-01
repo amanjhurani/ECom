@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import House
+from .forms import HouseCreateForm
 from django.http import HttpResponse
 
 
@@ -18,16 +19,17 @@ class HouseDetailView(LoginRequiredMixin,DetailView):
     template_name = "property-single.html"
 
 
-class HouseCreateView(LoginRequiredMixin,CreateView):
-    model = House
-    fields = ['name','rent','area','bedrooms','parking','img','bedrooms','description','Owner','address','ListedByOwner','Type']
-    template_name = 'house_form.html'
+def createHouse(request):
+    form = HouseCreateForm(request.POST)
+    if form.is_valid():
+        post = form.save(commit = False)
+        post.Publisher = request.user
+        return redirect('index')
+    else:
+        form = HouseCreateForm()
 
+    return render(request, 'test_house_form.html', {'form': form})
 
-
-    def form_valid(self, form):
-        form.instance.Publisher = self.request.user
-        return super().form_valid(form)
 
 
 
@@ -108,6 +110,3 @@ def blog_single(request):
 # 	context ={
 # 	'propert': House.objects.order_by('-id')}
 # 	return render(request,'property-grid.html',context)
-
-
-

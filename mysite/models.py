@@ -19,7 +19,7 @@ class House(models.Model):
     address = models.TextField(default="Earth")
     ListedByOwner = models.BooleanField(default=True)
     Type = models.CharField(max_length=20,default="Appartment")
-    Publisher = models.ForeignKey(User,on_delete=models.CASCADE)
+    #Publisher = models.ForeignKey(User,on_delete=models.CASCADE)
 
 
 
