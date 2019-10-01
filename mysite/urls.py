@@ -6,8 +6,7 @@ from .views import (HouseListView,
                     ContactView,
                     AboutView,
                     PropertyGrid,
-                    HouseDetailView,
-                    HouseCreateView)
+                    HouseDetailView,)
 from django.urls import path
 from . import views
 
@@ -21,7 +20,7 @@ urlpatterns = [
     path('agent-single.html', views.agent_single, name='agent_single'),
     path('agents-grid.html', views.agents_grid, name='agents_grid'),
     path('property-single/<int:pk>/',HouseDetailView.as_view(), name='property_single'),
-    path('property-upload/new/',HouseCreateView.as_view() , name='property_upload'),
+    path('property-upload/new/',views.createHouse , name='property_upload'),
     path('blog-single.html', views.blog_single, name='blog_single')
 
 ]

@@ -10,16 +10,16 @@ class House(models.Model):
     area = models.IntegerField(default=None)
     bedrooms = models.IntegerField(default=None)
     parking = models.BooleanField(default=False)
-    img = models.ImageField(upload_to='images',default=None, )
+    img = models.ImageField(upload_to='images',default="mysite/static/img/default-img.png")
     # img2 = models.ImageField(upload_to='images',default=None)
     # img3 = models.ImageField(upload_to='images',default=None)
-    bathrooms = models.IntegerField(default=None)
+    bathrooms = models.IntegerField(default=None, null = True)
     description = models.TextField(default="House")
     Owner = models.CharField(max_length= 100,default="Human")
     address = models.TextField(default="Earth")
     ListedByOwner = models.BooleanField(default=True)
     Type = models.CharField(max_length=20,default="Appartment")
-    Publisher = models.ForeignKey(User,on_delete=models.CASCADE)
+    #Publisher = models.ForeignKey(User,on_delete=models.CASCADE)
 
 
 
