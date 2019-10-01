@@ -22,8 +22,7 @@ class HouseDetailView(LoginRequiredMixin,DetailView):
 def createHouse(request):
     form = HouseCreateForm(request.POST)
     if form.is_valid():
-        post = form.save(commit = False)
-        post.Publisher = request.user
+        post = form.save()
         return redirect('index')
     else:
         form = HouseCreateForm()
